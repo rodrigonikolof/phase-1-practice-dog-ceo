@@ -20,20 +20,20 @@ fetch(breedUrl)
 .then (response => response.json())
 .then (data => {
         const dogList = document.querySelector('#dog-breeds');
-        const doggos = document.querySelectorAll('.doggos');
+        
         let dogs = data.message;
             for (let dog in dogs){
-                    dogList.innerHTML += `<li class="doggos"> ${dog} </li>`;
+                    let dogName = document.createElement('li');
+                    dogName.innerHTML = dog;
+                    dogList.appendChild(dogName);
+                    dogName.addEventListener('click', (e)=> {
+                        e.target.style.color = 'red';
+                    })
 
-                    dogList.addEventListener('click', () => {
-                        
-                     console.log('clicked!');
-            
-                 })
-             }
-             
-
-         })
-
+                    // dogList.innerHTML += `<li class="doggos"> ${dog} </li>`;
+                 }
+            })
 
 
+         const doggos = document.querySelectorAll('li');
+         console.log(doggos)
