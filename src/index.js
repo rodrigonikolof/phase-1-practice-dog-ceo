@@ -1,7 +1,11 @@
+// window.addEventListener('DOMContentLoaded', () => {
+//     const dropdown = document.querySelector('#breed-dropdown');
+//     dropdown.addEventListener('click', ()=>console.log(dropdown.value))
+// });
+
+
 const imgUrl = "https://dog.ceo/api/breeds/image/random/4";
 const breedUrl = 'https://dog.ceo/api/breeds/list/all';
-
-
 
 
 
@@ -26,14 +30,35 @@ fetch(breedUrl)
                     let dogName = document.createElement('li');
                     dogName.innerHTML = dog;
                     dogList.appendChild(dogName);
-                    dogName.addEventListener('click', (e)=> {
+                dogName.addEventListener('click', (e)=> {
                         e.target.style.color = 'red';
                     })
 
+                    
                     // dogList.innerHTML += `<li class="doggos"> ${dog} </li>`;
                  }
+        const doggos = document.querySelectorAll('li');
+        const dropdown = document.querySelector('#breed-dropdown');
+        const doggosArray = [...doggos].map(n=>n.innerText);
+       
+        dropdown.addEventListener('click', ()=> {
+                dogList.innerHTML = '';
+                // console.log(doggosArray.filter(filteredDogs))
+                let filteredDogList = doggosArray.filter(filteredDogs);
+                
+                for (canine of filteredDogList){
+                    let newDog = document.createElement('li');
+                    newDog.innerHTML = canine;
+                    dogList.appendChild(newDog);
+                }
+            });
+           
+                 function filteredDogs(array){
+                    return array[0][0] == dropdown.value
+                 }
+                 
+                 
             })
 
 
-         const doggos = document.querySelectorAll('li');
-         console.log(doggos)
+            // console.log(doggos[0].innerText[0])
